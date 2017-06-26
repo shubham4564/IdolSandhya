@@ -20,6 +20,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".aboutmeActivity"
+            android:label="@string/title_aboutme">
+        </activity>
+        <activity android:name=".socialActivity"
+            android:label="@string/title_social">
+        </activity>
     </application>
 
 </manifest>

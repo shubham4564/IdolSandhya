@@ -1,27 +1,23 @@
 package com.example.shubham.idolsandhya;
 
-import android.Manifest;
-import android.content.pm.PackageManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.telephony.SmsManager;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView mTextMessage;
-
     Button sendBtn;
 
+    private static final int TIME_INTERVAL = 2000; // # milliseconds, desired time passed between two back presses.
+    private long mBackPressed;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -39,12 +35,16 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),
                             "About Me",
                             Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(MainActivity.this , aboutmeActivity.class);
+                    startActivity(intent);
                 //    mTextMessage.setText(R.string.title_aboutme);
                     return true;
                 case R.id.navigation_social:
                     Toast.makeText(getApplicationContext(),
                             "Social Links",
                             Toast.LENGTH_LONG).show();
+                    Intent intent1 = new Intent(MainActivity.this , socialActivity.class);
+                    startActivity(intent1);
                 //    mTextMessage.setText(R.string.title_social);
                     return true;
             }
@@ -96,7 +96,18 @@ public class MainActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 
+    @Override
+    public void onBackPressed() {
+            if (mBackPressed + TIME_INTERVAL > System.currentTimeMillis())
+            {
+                super.onBackPressed();
+                return;
+            }
+            else { Toast.makeText(getBaseContext(), "Tap back button in order to exit", Toast.LENGTH_SHORT).show(); }
 
+            mBackPressed = System.currentTimeMillis();
+
+    }
 
 
 
