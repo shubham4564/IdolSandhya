@@ -25,7 +25,7 @@
         <activity android:name=".aboutmeActivity"
             android:label="@string/title_aboutme">
         </activity>
-        <activity android:name=".socialActivity"
+        <activity android:name=".RecyclerActivity"
             android:label="@string/title_social">
         </activity>
     </application>

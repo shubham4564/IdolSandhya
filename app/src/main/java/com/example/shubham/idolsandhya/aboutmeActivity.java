@@ -42,7 +42,7 @@ public class aboutmeActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),
                             "Social Links",
                             Toast.LENGTH_LONG).show();
-                    Intent intent1 = new Intent(aboutmeActivity.this , socialActivity.class);
+                    Intent intent1 = new Intent(aboutmeActivity.this , RecyclerActivity.class);
                     startActivity(intent1);
                     //    mTextMessage.setText(R.string.title_social);
                     return true;

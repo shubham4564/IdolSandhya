@@ -53,10 +53,10 @@ public class MainActivity extends AppCompatActivity {
                 //    mTextMessage.setText(R.string.title_aboutme);
                     return true;
                 case R.id.navigation_social:
-                    Toast.makeText(getApplicationContext(),
-                            "Social Links",
-                            Toast.LENGTH_LONG).show();
-                    Intent intent1 = new Intent(MainActivity.this , socialActivity.class);
+                    //Toast.makeText(getApplicationContext(),
+                    //        "Social Links",
+                     //       Toast.LENGTH_LONG).show();
+                    Intent intent1 = new Intent(MainActivity.this , RecyclerActivity.class);
                     startActivity(intent1);
                 //    mTextMessage.setText(R.string.title_social);
                     return true;
