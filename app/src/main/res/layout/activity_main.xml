@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:main_card_view="http://schemas.android.com/apk/res-auto"
@@ -15,6 +16,15 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textAlignment="center"
+            android:layout_marginTop="30dp"
+            android:textSize="20dp"
+            android:text="Enter the Number of SMS
+ you want to send to Sandhya Joshi."/>
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
