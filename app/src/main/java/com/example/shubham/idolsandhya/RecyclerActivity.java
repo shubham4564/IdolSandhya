@@ -2,6 +2,7 @@ package com.example.shubham.idolsandhya;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.view.MenuItem;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -36,9 +38,6 @@ public class RecyclerActivity extends Activity {
     // URL to get contacts JSON
     private static String url = "https://www.googleapis.com/youtube/v3/search?key=AIzaSyDl2oUGOweKiHCGQ3jZU7wUBXIGVnRn5Yg&channelId=UCzNfKeIwWsYXlHzK51P4mBg&part=snippet,id&order=date&maxResults=6";
     ArrayList<HashMap<String, String>> videoIdList;
-
-
-
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -80,9 +79,9 @@ public class RecyclerActivity extends Activity {
         setContentView(R.layout.recycler_main);
 
         videoIdList = new ArrayList<>();
-
         lv = findViewById(R.id.lists);
         new getVideoId().execute();
+
 
         RecyclerView recyclerView=findViewById(R.id.list);
         recyclerView.setHasFixedSize(true);
@@ -92,6 +91,7 @@ public class RecyclerActivity extends Activity {
         recyclerView.setLayoutManager(linearLayoutManager);
         RecyclerAdapter adapter=new RecyclerAdapter(RecyclerActivity.this);
         recyclerView.setAdapter(adapter);
+
 
         BottomNavigationView navigation = findViewById(R.id.navigation1);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -113,7 +113,7 @@ public class RecyclerActivity extends Activity {
             // pDialog.show();
 
         }
-
+      //private  ArrayList<HashMap<String, String>> a;
         @Override
         protected Void doInBackground(Void... arg0) {
             HttpHandler sh = new HttpHandler();
@@ -138,21 +138,17 @@ public class RecyclerActivity extends Activity {
                         JSONObject id = c.getJSONObject("id");
                         String videoId = id.getString("videoId");
 
-                        JSONObject snippet = c.getJSONObject("snippet");
-                        String title = snippet.getString("title");
-
 
                         // tmp hash map for single videoId
                         HashMap<String, String> videoIds = new HashMap<>();
 
                         // adding each child node to HashMap key => value
                         videoIds.put("videoId", videoId);
-                        videoIds.put("title", title);
-
 
                         // adding videoId to video Id list
                         videoIdList.add(videoIds);
                     }
+
                 } catch (final JSONException e) {
                     Log.e(TAG, "Json parsing error: " + e.getMessage());
                     runOnUiThread(new Runnable() {
@@ -194,10 +190,9 @@ public class RecyclerActivity extends Activity {
              * */
             ListAdapter adapter = new SimpleAdapter(
                     RecyclerActivity.this, videoIdList,
-                    R.layout.list_item, new String[]{"videoId", "title"}, new int[]{R.id.videoId, R.id.title});
+                    R.layout.list_item, new String[]{"videoId"}, new int[]{R.id.videoId});
 
             lv.setAdapter(adapter);
-
 
         }
 
